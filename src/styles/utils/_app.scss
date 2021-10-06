@@ -3,3 +3,31 @@
   margin: 0;
   padding: 0;
 }
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  background-color: bisque;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+img {
+  display: block;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
