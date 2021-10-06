@@ -1,10 +1,39 @@
 import React from "react";
+import classnames from "classnames";
 
-const Card = () => {
+import useStore from "../../store";
+import { selectHideMatches, selectMatches, selectSelectedIds } from "../../store/selectors";
+
+const Card = ({
+ card: {
+ id, filename, name, backgroundColor,
+}, handleClick,
+}) => {
+  const matches = useStore(selectMatches);
+  const selectedIds = useStore(selectSelectedIds);
+  const hideMatches = useStore(selectHideMatches);
+
+  const styles = {
+    card: classnames(
+      "card",
+      { selected: selectedIds.includes(id) },
+      { matched: matches.includes(name) },
+      { hidden: hideMatches },
+    ),
+  };
+
   return (
-    <div>
-      <h2>Card</h2>
-    </div>
+    <li className={styles.card} onClick={() => handleClick(id)}>
+      <div className="card__front" style={{ backgroundColor }}>
+        <div
+          className="card__image"
+          style={{ backgroundImage: `url(images/${filename})` }}
+          alt={name}
+          data-name={name}
+        />
+      </div>
+      <div className="card__back" />
+    </li>
   );
 };
 

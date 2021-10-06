@@ -1,9 +1,13 @@
 import React from "react";
+import useStore from "../../store/index";
+import { selectScore } from "../../store/selectors/index";
 
 const ScoreBoard = () => {
+  const score = useStore(selectScore);
+
   return (
-    <div>
-      <h2>Scoreboard</h2>
+    <div className="scoreboard">
+      <p className="scoreboard__text">Score: <span>{score}</span></p>
     </div>
   );
 };
