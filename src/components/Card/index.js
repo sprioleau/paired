@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import classnames from "classnames";
 
 import useStore from "../../store";
@@ -22,8 +22,10 @@ const Card = ({
     ),
   };
 
+  const onClick = useCallback(() => handleClick(id), [id]);
+
   return (
-    <li className={styles.card} onClick={() => handleClick(id)}>
+    <li className={styles.card} onClick={onClick}>
       <div className="card__front" style={{ backgroundColor }}>
         <div
           className="card__image"
