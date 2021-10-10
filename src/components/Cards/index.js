@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import Confetti from "react-dom-confetti";
 
 import Card from "../Card";
 
 import useStore from "../../store";
 import { cardsData } from "../../constants/cardsData";
-import confettiConfig from "../../constants/confettiConfig";
 import {
   selectDeck,
   selectSelectCard,
@@ -29,34 +27,16 @@ const Cards = () => {
     generateShuffledDeck(cardsData);
   }, []);
 
-  console.log("allMatchesFound:", allMatchesFound);
-  console.log("confettiConfig:", confettiConfig);
-
   return (
     <>
-      <button type="button" onClick={() => resetGame(cardsData)}>Reset Game</button>
-      <div style={{
-          position: "fixed",
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-        justifyContent: "center",
-        left: 0,
-          top: 0,
-        zIndex: 10,
-          pointerEvents: "none",
-        }}
-      >
-        <Confetti active={allMatchesFound} config={confettiConfig} />
-      </div>
-      {allMatchesFound ? (
-        <>
+      <header style={{ display: "flex", alignItems: "center" }}>
+        <button type="button" onClick={() => resetGame(cardsData)}>Reset Game</button>
+        {allMatchesFound ? (
           <h2>Game complete!</h2>
-        </>
-      ) : (
-        <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button>
-      )}
+        ) : (
+          <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button>
+        )}
+      </header>
       <ul className="cards">
         {Object.values(deck).map((card) => (
           <Card
