@@ -68,6 +68,10 @@ button {
   &:hover {
     cursor: pointer;
   }
+
+  & + & {
+    margin-left: 1rem;
+  }
 }
 
 button {
