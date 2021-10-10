@@ -1,3 +1,6 @@
+$purple : #b500ff;
+$white : #fff;
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -5,7 +8,8 @@
 }
 
 html,
-body {
+body,
+#root {
   width: 100%;
   min-height: 100vh;
   margin: 0;
@@ -30,4 +34,45 @@ ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > :not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  border: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 10px -5px rgba($purple, 0.3);
+  letter-spacing: 0.5px;
+  margin: 1rem 0;
+  padding: 0.75rem 1.5rem;
+  transform: scale(1);
+  transition: all 250ms ease-out;
+  background-color: $purple;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button {
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.35rem rgba($purple, 0.8);
+  }
 }
