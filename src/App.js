@@ -9,10 +9,12 @@ import GameFinished from "./components/GameFinished/index";
 function App() {
   return (
     <div className="App">
-      <h1>Paired</h1>
+      <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1>Paired</h1>
+        <ScoreBoard />
+      </header>
       <ConfettiBlast />
       <GameFinished />
-      <ScoreBoard />
       <Toolbar />
       <Cards />
     </div>

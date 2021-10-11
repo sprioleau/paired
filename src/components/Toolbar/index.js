@@ -22,13 +22,11 @@ const Toolbar = () => {
 
   return (
     <div className="toolbar">
-      <header style={{ display: "flex", alignItems: "center" }}>
-        <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button>
-        <button type="button" onClick={() => resetGame(cardsData)}>Reset Game</button>
-        <button type="button" onClick={toggleSound}>
-        {isPlaying ? (<MdVolumeOff />) : (<MdVolumeUp />)}
-        </button>
-      </header>
+      <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button>
+      <button type="button" onClick={() => resetGame(cardsData)}>Reset Game</button>
+      <button type="button" onClick={toggleSound}>
+        {isPlaying ? (<span><MdVolumeOff /> Off</span>) : (<span><MdVolumeUp /> On</span>)}
+      </button>
     </div>
   );
 };
