@@ -10,6 +10,11 @@ const useStore = create((set) => ({
   matches: [],
   hideMatches: false,
   score: 0,
+  sounds: {
+    correct: new Audio("/audio/correct.mp3"),
+    incorrect: new Audio("/audio/incorrect.mp3"),
+    flip: new Audio("/audio/flip.mp3"),
+  },
 
   // State functions
   generateShuffledDeck: (cardsData) => {
@@ -30,14 +35,24 @@ const useStore = create((set) => ({
 
   selectCard: (cardId) => set((state) => {
     const { selectedIds, compareCards } = state;
+    state.sounds.flip.play();
     if (selectedIds.includes(cardId) || selectedIds.length >= 2) return { state };
     if (selectedIds.length === 1) compareCards([...selectedIds, cardId]);
     return { selectedIds: [...selectedIds, cardId] };
   }),
 
-  deselectCards: async (after) => {
+  deselectCards: async (after, isMatch) => {
     await timeout(after);
-    set({ selectedIds: [] });
+
+    set((state) => {
+      if (isMatch) {
+        state.sounds.correct.play();
+      } else {
+        state.sounds.incorrect.play();
+      }
+
+      return { selectedIds: [] };
+    });
   },
 
   updateMatches: (name) => set((state) => ({
@@ -50,13 +65,14 @@ const useStore = create((set) => ({
 
     return set((state) => {
       const [name1, name2] = idsToCompare.map((id) => state.deck[id].name);
+      const isMatch = name1 === name2;
 
-      if (name1 === name2) {
+      if (isMatch) {
         state.updateMatches(name1);
         state.addToScoreBy(10);
       }
 
-      state.deselectCards(1000);
+      state.deselectCards(1000, isMatch);
       return { state };
     });
   },

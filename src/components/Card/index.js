@@ -2,12 +2,14 @@ import React, { useCallback } from "react";
 import classnames from "classnames";
 
 import useStore from "../../store";
-import { selectHideMatches, selectMatches, selectSelectedIds } from "../../store/selectors";
+import {
+ selectHideMatches, selectMatches, selectSelectedIds,
+} from "../../store/selectors";
 
 const Card = ({
  card: {
  id, filename, name, backgroundColor,
-}, handleClick,
+}, handleSelectCard,
 }) => {
   const matches = useStore(selectMatches);
   const selectedIds = useStore(selectSelectedIds);
@@ -22,7 +24,7 @@ const Card = ({
     ),
   };
 
-  const onClick = useCallback(() => handleClick(id), [id]);
+  const onClick = useCallback(() => handleSelectCard(id), [id]);
 
   return (
     <li className={styles.card} onClick={onClick}>

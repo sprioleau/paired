@@ -17,4 +17,4 @@ export const selectUpdateMatches               = (state) => state.updateMatches 
 export const selectCompareCards                = (state) => state.compareCards                ;
 export const selectResetGame                   = (state) => state.resetGame                   ;
 
-export const selectAllMatchesFound = (state) => Object.values(state.deck).every(({ name }) => state.matches.includes(name));
+export const selectAllMatchesFound = (state) => Object.values(state.deck).length > 0 && Object.values(state.deck).every(({ name }) => state.matches.includes(name));
