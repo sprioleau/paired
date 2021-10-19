@@ -1,6 +1,7 @@
 @import "utils/variables";
 @import "utils/mixins";
 @import "utils/app";
+@import "utils/layout";
 
 @import "components/scoreboard";
 @import "components/toolbar";
@@ -8,3 +9,4 @@
 @import "components/card";
 @import "components/confetti-blast";
 @import "components/game-finished";
+@import "components/deck-select";

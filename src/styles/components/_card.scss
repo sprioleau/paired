@@ -1,7 +1,8 @@
 .card {
   --rotation-y: 0;
   --scale: 1;
-  border-radius: 1.5rem 30%;
+  --border-radius: 1.5rem 30%;
+  border-radius: var(--border-radius);
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transform: rotateY(var(--rotation-y)) scale(var(--scale));
@@ -25,7 +26,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 1.5rem 30%;
+    border-radius: var(--border-radius);
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
   }
@@ -66,3 +67,10 @@
   }
 }
 
+@include md {
+  .card {
+    --desired-card-size: 6rem;
+    --border-radius: 1rem 30%;
+    // gap: 1rem;
+  }
+}
