@@ -1,11 +1,13 @@
 import create from "zustand";
+import availableDecks from "../decks";
 
 import { generateDeckFromData } from "../utlis";
 import timeout from "../utlis/timeout";
 
 const useStore = create((set) => ({
   // State
-  deck: {},
+  deck: generateDeckFromData(availableDecks[0]),
+  userSelectedDeck: availableDecks[0],
   selectedIds: [],
   matches: [],
   hideMatches: false,
@@ -17,10 +19,7 @@ const useStore = create((set) => ({
   },
 
   // State functions
-  generateShuffledDeck: (cardsData) => {
-    const deck = generateDeckFromData(cardsData);
-    set({ deck, selectedIds: [] });
-  },
+  generateShuffledDeck: () => set((state) => ({ deck: generateDeckFromData(state.userSelectedDeck) })),
 
   addToScoreBy: (amount) => set((state) => ({ score: state.score + amount })),
 
@@ -31,6 +30,10 @@ const useStore = create((set) => ({
 
   toggleHideMatches: () => set((state) => ({
     hideMatches: !state.hideMatches,
+  })),
+
+  selectDeck: (deckId) => set((state) => ({
+    userSelectedDeck: availableDecks.find((deck) => deck.id === deckId),
   })),
 
   selectCard: (cardId) => set((state) => {
@@ -64,7 +67,7 @@ const useStore = create((set) => ({
     if (idsToCompare.length !== 2) return null;
 
     return set((state) => {
-      const [name1, name2] = idsToCompare.map((id) => state.deck[id].name);
+      const [name1, name2] = idsToCompare.map((id) => state.deck.cards[id].name);
       const isMatch = name1 === name2;
 
       if (isMatch) {
@@ -77,8 +80,8 @@ const useStore = create((set) => ({
     });
   },
 
-  resetGame: (cardsData) => set((state) => {
-    state.delayedGenerateShuffledDeck(cardsData, 500);
+  resetGame: () => set((state) => {
+    state.delayedGenerateShuffledDeck(state.userSelectedDeck, 500);
 
     return {
       selectedIds: [],

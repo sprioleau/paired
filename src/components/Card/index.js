@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 import useStore from "../../store";
 import {
- selectHideMatches, selectMatches, selectSelectedIds,
+ selectHideMatches, selectMatches, selectSelectedIds, selectDeckId,
 } from "../../store/selectors";
 
 const Card = ({
@@ -13,6 +13,7 @@ const Card = ({
 }) => {
   const matches = useStore(selectMatches);
   const selectedIds = useStore(selectSelectedIds);
+  const deckId = useStore(selectDeckId);
   const hideMatches = useStore(selectHideMatches);
 
   const styles = {
@@ -31,7 +32,7 @@ const Card = ({
       <div className="card__front" style={{ backgroundColor }}>
         <div
           className="card__image"
-          style={{ backgroundImage: `url(images/${filename})` }}
+          style={{ backgroundImage: `url(images/${deckId}/${filename})` }}
           alt={name}
           data-name={name}
         />

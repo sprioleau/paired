@@ -1,9 +1,12 @@
 import React from "react";
 import useStore from "../../store/index";
-import { selectScore } from "../../store/selectors/index";
+import { selectScore, selectDeckId } from "../../store/selectors/index";
 
 const ScoreBoard = () => {
   const score = useStore(selectScore);
+  const deckId = useStore(selectDeckId);
+
+  if (!deckId) return null;
 
   return (
     <div className="scoreboard">

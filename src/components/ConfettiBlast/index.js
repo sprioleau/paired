@@ -7,6 +7,7 @@ import { selectAllMatchesFound } from "../../store/selectors";
 
 const ConfettiBlast = () => {
   const allMatchesFound = useStore(selectAllMatchesFound);
+  console.log("allMatchesFound:", allMatchesFound);
 
   return (
     <div className="confetti">
