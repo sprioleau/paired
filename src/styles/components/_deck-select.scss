@@ -12,13 +12,13 @@
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 4vw;
     max-width: 600px;
     width: 100%;
   }
-    
+  
   &__deck {
-    flex: 1 1 200px;
+    margin: 1vw;
+    flex: 0 1 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
