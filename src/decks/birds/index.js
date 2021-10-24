@@ -2,6 +2,8 @@
 /* eslint-disable comma-spacing */
 /* eslint-disable no-multi-spaces */
 
+// source: https://pixabay.com/vectors/bird-kids-branch-children-4091989
+
 export default {
   id: "birds",
   title: "Birds",
