@@ -16,6 +16,7 @@ const useStore = create((set) => ({
     correct: new Audio("/audio/correct.mp3"),
     incorrect: new Audio("/audio/incorrect.mp3"),
     flip: new Audio("/audio/flip.mp3"),
+    win: new Audio("/audio/win-1.mp3"),
   },
 
   // State functions
@@ -58,10 +59,15 @@ const useStore = create((set) => ({
     });
   },
 
-  updateMatches: (name) => set((state) => ({
-    matches: [...state.matches, name],
-    selectedIds: [],
-  })),
+updateMatches: (name) => set((state) => {
+    const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name].includes(card.name));
+    if (allMatchesFound) state.sounds.win.play();
+
+    return {
+      matches: [...state.matches, name],
+      selectedIds: [],
+    };
+  }),
 
   compareCards: (idsToCompare) => {
     if (idsToCompare.length !== 2) return null;
