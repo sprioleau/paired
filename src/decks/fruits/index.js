@@ -11,7 +11,7 @@ export default {
     { filename: "apple.png"      , name: "apple"      , backgroundColor: "#4363d8" },
     { filename: "avacado.png"    , name: "avacado"    , backgroundColor: "#3cb44b" },
     { filename: "banana.png"     , name: "banana"     , backgroundColor: "#ffe119" },
-    { filename: "lenon.png"      , name: "lenon"      , backgroundColor: "#e6194b" },
+    { filename: "lemon.png"      , name: "lemon"      , backgroundColor: "#e6194b" },
     { filename: "pear.png"       , name: "pear"       , backgroundColor: "#f58231" },
     { filename: "pineapple.png"  , name: "pineapple"  , backgroundColor: "#911eb4" },
     { filename: "strawberry.png" , name: "strawberry" , backgroundColor: "#46f0f0" },
