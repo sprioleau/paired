@@ -30,7 +30,7 @@ const DeckSelect = () => {
                 data-name={cards[0].name}
                 style={{
                   backgroundImage: `url(images/${id}/${cards[0].filename})`,
-                  backgroundSize: "contain",
+                  backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundColor: cards[0].backgroundColor,
