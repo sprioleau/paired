@@ -3,6 +3,7 @@ import birds from "./birds";
 import fruits from "./fruits";
 import disney from "./disney";
 import pokemon from "./pokemon";
+import numbersZeroTen from "./numbers-zero-ten";
 
 const availableDecks = [
   birds,
@@ -10,6 +11,7 @@ const availableDecks = [
   fruits,
   disney,
   pokemon,
+  numbersZeroTen,
 ];
 
 export default availableDecks;
