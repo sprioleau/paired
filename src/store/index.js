@@ -4,6 +4,21 @@ import availableDecks from "../decks";
 import { generateDeckFromData } from "../utlis";
 import timeout from "../utlis/timeout";
 
+const gameSounds = {
+  correct: new Audio("/audio/correct.mp3"),
+  incorrect: new Audio("/audio/incorrect.mp3"),
+  flip: new Audio("/audio/flip.mp3"),
+  win: new Audio("/audio/win-1.mp3"),
+};
+
+const initialSounds = {};
+
+Object.entries(gameSounds).forEach(([name, sound]) => {
+  sound.addEventListener("canplaythrough", (e) => {
+    initialSounds[name] = sound;
+  });
+});
+
 const useStore = create((set) => ({
   // State
   deck: generateDeckFromData(availableDecks[0]),
@@ -12,12 +27,7 @@ const useStore = create((set) => ({
   matches: [],
   hideMatches: false,
   score: 0,
-  sounds: {
-    correct: new Audio("/audio/correct.mp3"),
-    incorrect: new Audio("/audio/incorrect.mp3"),
-    flip: new Audio("/audio/flip.mp3"),
-    win: new Audio("/audio/win-1.mp3"),
-  },
+  sounds: initialSounds,
 
   // State functions
   generateShuffledDeck: () => set((state) => ({ deck: generateDeckFromData(state.userSelectedDeck) })),
@@ -39,8 +49,8 @@ const useStore = create((set) => ({
 
   selectCard: (cardId) => set((state) => {
     const { selectedIds, compareCards } = state;
-    state.sounds.flip.play();
     if (selectedIds.includes(cardId) || selectedIds.length >= 2) return { state };
+    state.sounds.flip.play();
     if (selectedIds.length === 1) compareCards([...selectedIds, cardId]);
     return { selectedIds: [...selectedIds, cardId] };
   }),

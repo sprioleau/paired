@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
 
 import randomBetween from "../../utlis/randomBetween";
-import useAudio from "../../hooks/useAudio";
+import useBackgroundAudio from "../../hooks/useBackgroundAudio";
 import useStore from "../../store";
 import {
   selectResetGame,
@@ -20,7 +20,7 @@ const Toolbar = () => {
 
   const handleGoToSelectDeck = () => history.push("/");
 
-  const { isPlaying, setIsPlaying } = useAudio({ url: `audio/background-${randomBetween(1, 3)}.mp3` });
+  const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: `audio/background-${randomBetween(1, 3)}.mp3` });
 
   const toggleSound = () => setIsPlaying(!isPlaying);
 
