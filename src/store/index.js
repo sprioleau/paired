@@ -51,7 +51,6 @@ const useStore = create((set) => ({
   selectCard: (cardId) => set((state) => {
     const { selectedIds, compareCards } = state;
     if (selectedIds.includes(cardId) || selectedIds.length >= 2) return { state };
-    // state.sounds.flip.play();
     state.playSound(sounds.flip);
     if (selectedIds.length === 1) compareCards([...selectedIds, cardId]);
     return { selectedIds: [...selectedIds, cardId] };
@@ -79,10 +78,8 @@ const useStore = create((set) => ({
 
     set((state) => {
       if (isMatch) {
-        // state.sounds.correct.play();
         state.playSound(sounds.correct);
       } else {
-        // state.sounds.incorrect.play();
         state.playSound(sounds.incorrect);
       }
 
@@ -92,10 +89,7 @@ const useStore = create((set) => ({
 
   updateMatches: (name) => set((state) => {
     const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name].includes(card.name));
-    if (allMatchesFound) {
-      // state.sounds.win.play();
-      state.playSound(sounds.win);
-    }
+    if (allMatchesFound) state.playSound(sounds.win);
 
     return {
       matches: [...state.matches, name],
