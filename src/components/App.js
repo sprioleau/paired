@@ -7,7 +7,7 @@ import { Cards, ScoreBoard } from ".";
 import ConfettiBlast from "./ConfettiBlast";
 import Toolbar from "./Toolbar";
 import GameFinished from "./GameFinished/index";
-import DeckSelect from "./DeckSelect/index";
+import { DeckSelect } from "./DeckSelect/index";
 
 const App = () => (
   <div className="app">
