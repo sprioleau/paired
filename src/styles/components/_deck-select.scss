@@ -1,9 +1,12 @@
 .deck-select {
+  --max-card-width: 300px;
+  --card-gap: 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &__prompt {
+    font-size: 2rem;
     margin-bottom: 1.5rem;
   }
   
@@ -12,13 +15,13 @@
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 600px;
+    max-width: calc(var(--max-card-width) * 3 + var(--card-gap) * 2 * 3);
     width: 100%;
   }
   
   &__deck {
-    margin: 1vw;
-    width: clamp(150px, 20vw, 300px);
+    margin: var(--card-gap);
+    width: clamp(200px, 20vw, var(--max-card-width));
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,8 +1,8 @@
 // Breakpoints
 $bp-x-small: 350px;
 $bp-small: 576px;
-$bp-medium: 850px;
-$bp-large: 1180px;
+$bp-medium: 900px;
+$bp-large: 1200px;
 
 @mixin xsm {
   @media (max-width: #{$bp-x-small}) {
