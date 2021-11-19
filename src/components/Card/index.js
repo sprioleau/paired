@@ -25,7 +25,7 @@ const Card = ({
     ),
   };
 
-  const onClick = useCallback(() => handleSelectCard(id), [id]);
+  const onClick = useCallback(() => handleSelectCard(id), [id, handleSelectCard]);
 
   return (
     <li className={styles.card} onClick={onClick}>

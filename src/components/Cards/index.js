@@ -17,7 +17,7 @@ const Cards = () => {
 
   useEffect(() => {
     generateShuffledDeck();
-  }, []);
+  }, [generateShuffledDeck]);
 
   if (!cards) return null;
 
