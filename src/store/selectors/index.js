@@ -15,6 +15,7 @@ export const selectAddToScoreBy                = (state) => state.addToScoreBy  
 export const selectDelayedGenerateShuffledDeck = (state) => state.delayedGenerateShuffledDeck    ;
 export const selectToggleHideMatches           = (state) => state.toggleHideMatches              ;
 export const selectSelectCard                  = (state) => state.selectCard                     ;
+export const selectPlaySound                   = (state) => state.playSound                      ;
 export const selectDeselectCards               = (state) => state.deselectCards                  ;
 export const selectUpdateMatches               = (state) => state.updateMatches                  ;
 export const selectCompareCards                = (state) => state.compareCards                   ;

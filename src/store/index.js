@@ -1,23 +1,12 @@
 import create from "zustand";
+import { sounds } from "../constants";
 import availableDecks from "../decks";
 
 import { generateDeckFromData } from "../utlis";
 import timeout from "../utlis/timeout";
 
-const gameSounds = {
-  correct: new Audio("/audio/correct.mp3"),
-  incorrect: new Audio("/audio/incorrect.mp3"),
-  flip: new Audio("/audio/flip.mp3"),
-  win: new Audio("/audio/win-1.mp3"),
-};
-
-const initialSounds = {};
-
-Object.entries(gameSounds).forEach(([name, sound]) => {
-  sound.addEventListener("canplaythrough", (e) => {
-    initialSounds[name] = sound;
-  });
-});
+let soundId = null;
+const gameSounds = new Audio("/audio/game-sounds.mp3");
 
 const useStore = create((set) => ({
   // State
@@ -27,10 +16,18 @@ const useStore = create((set) => ({
   matches: [],
   hideMatches: false,
   score: 0,
-  sounds: initialSounds,
+  gameSounds,
 
   // State functions
   generateShuffledDeck: () => set((state) => ({ deck: generateDeckFromData(state.userSelectedDeck) })),
+
+  playSound: ({ startTime, duration, volume = 0.65 }) => {
+    if (soundId) clearTimeout(soundId);
+    gameSounds.volume = volume;
+    gameSounds.currentTime = startTime;
+    gameSounds.play();
+    soundId = setTimeout(() => gameSounds.pause(), duration * 1000);
+  },
 
   addToScoreBy: (amount) => set((state) => ({ score: state.score + amount })),
 
@@ -39,44 +36,23 @@ const useStore = create((set) => ({
     set((state) => state.generateShuffledDeck(cardsData, after));
   },
 
-  toggleHideMatches: () => set((state) => ({
-    hideMatches: !state.hideMatches,
-  })),
+  toggleHideMatches: () => set((state) => {
+    state.playSound(sounds.buttonSelect);
+    return { hideMatches: !state.hideMatches };
+  }),
 
-  selectDeck: (deckId) => set((state) => ({
-    userSelectedDeck: availableDecks.find((deck) => deck.id === deckId),
-  })),
+  selectDeck: (deckId) => set((state) => {
+    state.playSound(sounds.confirm);
+    return { userSelectedDeck: availableDecks.find((deck) => deck.id === deckId) };
+  }),
 
   selectCard: (cardId) => set((state) => {
     const { selectedIds, compareCards } = state;
     if (selectedIds.includes(cardId) || selectedIds.length >= 2) return { state };
-    state.sounds.flip.play();
+    // state.sounds.flip.play();
+    state.playSound(sounds.flip);
     if (selectedIds.length === 1) compareCards([...selectedIds, cardId]);
     return { selectedIds: [...selectedIds, cardId] };
-  }),
-
-  deselectCards: async (after, isMatch) => {
-    await timeout(after);
-
-    set((state) => {
-      if (isMatch) {
-        state.sounds.correct.play();
-      } else {
-        state.sounds.incorrect.play();
-      }
-
-      return { selectedIds: [] };
-    });
-  },
-
-updateMatches: (name) => set((state) => {
-    const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name].includes(card.name));
-    if (allMatchesFound) state.sounds.win.play();
-
-    return {
-      matches: [...state.matches, name],
-      selectedIds: [],
-    };
   }),
 
   compareCards: (idsToCompare) => {
@@ -96,7 +72,37 @@ updateMatches: (name) => set((state) => {
     });
   },
 
+  deselectCards: async (after, isMatch) => {
+    await timeout(after);
+
+    set((state) => {
+      if (isMatch) {
+        // state.sounds.correct.play();
+        state.playSound(sounds.correct);
+      } else {
+        // state.sounds.incorrect.play();
+        state.playSound(sounds.incorrect);
+      }
+
+      return { selectedIds: [] };
+    });
+  },
+
+  updateMatches: (name) => set((state) => {
+    const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name].includes(card.name));
+    if (allMatchesFound) {
+      // state.sounds.win.play();
+      state.playSound(sounds.win);
+    }
+
+    return {
+      matches: [...state.matches, name],
+      selectedIds: [],
+    };
+  }),
+
   resetGame: () => set((state) => {
+    state.playSound(sounds.buttonSelect);
     state.delayedGenerateShuffledDeck(state.userSelectedDeck, 500);
 
     return {
