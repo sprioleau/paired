@@ -5,6 +5,7 @@
 export default {
   id: "favorite-characters",
   title: "Zara's Favorite Characters",
+  coverIndex: 5,
   cards: [
     { filename: "caillou.png"       , name: "caillou"        , backgroundColor: "#e6194b" },
     { filename: "curious-george.png", name: "curious-george" , backgroundColor: "#3cb44b" },

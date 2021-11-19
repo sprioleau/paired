@@ -5,6 +5,7 @@
 export default {
   id: "cocomelon",
   title: "Cocomelon",
+  coverIndex: 2,
   cards: [
     { filename: "cocomelon-1.gif" , name: "cocomelon-1" , backgroundColor: "#46f0f0" },
     { filename: "cocomelon-2.gif" , name: "cocomelon-2" , backgroundColor: "#3cb44b" },

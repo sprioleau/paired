@@ -7,6 +7,7 @@
 export default {
   id: "birds",
   title: "Birds",
+  coverIndex: 0,
   cards: [
     { filename: "bird-1.png" , name: "bird-1" , backgroundColor: "#46f0f0" },
     { filename: "bird-2.png" , name: "bird-2" , backgroundColor: "#3cb44b" },

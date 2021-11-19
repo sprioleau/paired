@@ -5,6 +5,7 @@
 export default {
   id: "numbers-zero-ten",
   title: "Numbers 0-10",
+  coverIndex: 5,
   cards: [
     { filename: "0.gif"  , name: "0"  , backgroundColor: "#f58231" },
     { filename: "1.gif"  , name: "1"  , backgroundColor: "#3cb44b" },

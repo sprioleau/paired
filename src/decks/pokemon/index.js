@@ -5,6 +5,7 @@
 export default {
   id: "pokemon",
   title: "Pokémon",
+  coverIndex: 2,
   cards: [
     { filename: "pikachu-run.gif"    , name: "pikachu-run"    , backgroundColor: "#f032e6" },
     { filename: "bulbasaur-8bit.gif" , name: "bulbasaur-8bit" , backgroundColor: "#46f0f0" },

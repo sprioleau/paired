@@ -7,6 +7,7 @@
 export default {
   id: "fruits",
   title: "Fruits",
+  coverIndex: 0,
   cards: [
     { filename: "apple.png"      , name: "apple"      , backgroundColor: "#4363d8" },
     { filename: "avacado.png"    , name: "avacado"    , backgroundColor: "#3cb44b" },

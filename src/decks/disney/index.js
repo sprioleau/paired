@@ -3,8 +3,9 @@
 /* eslint-disable no-multi-spaces */
 
 export default {
-  id: "disney-characters",
-  title: "Disney Characters",
+  id: "disney",
+  title: "Disney",
+  coverIndex: 4,
   cards: [
     { filename: "mulan.gif"                 , name: "mulan"                 , backgroundColor: "#ffe119" },
     { filename: "abu.gif"                   , name: "abu"                   , backgroundColor: "#3cb44b" },
