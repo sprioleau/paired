@@ -6,16 +6,16 @@ import useBackgroundAudio from "../../hooks/useBackgroundAudio";
 import useStore from "../../store";
 import {
   selectResetGame,
-  selectToggleHideMatches,
-  selectHideMatches,
+  // selectToggleHideMatches,
+  // selectHideMatches,
   selectPlaySound,
 } from "../../store/selectors";
 import { sounds } from "../../constants";
 
 const Toolbar = () => {
   const resetGame = useStore(selectResetGame);
-  const toggleHideMatches = useStore(selectToggleHideMatches);
-  const hideMatches = useStore(selectHideMatches);
+  // const toggleHideMatches = useStore(selectToggleHideMatches);
+  // const hideMatches = useStore(selectHideMatches);
   const playSound = useStore(selectPlaySound);
   const history = useHistory();
   const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: "audio/background.mp3" });
@@ -30,7 +30,7 @@ const Toolbar = () => {
 
   return (
     <div className="toolbar">
-      <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button>
+      {/* <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button> */}
       <button type="button" onClick={resetGame}>Reset Game</button>
       <button type="button" onClick={handleGoToSelectDeck}>Select Deck</button>
       <button type="button" onClick={toggleSound}>
