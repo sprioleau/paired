@@ -6,6 +6,7 @@ const useBackgroundAudio = ({ url, autoPlay = false, shouldLoop = false }) => {
 
   useEffect(() => {
     const setupAudio = (e) => {
+      audio.volume = 0.25;
       if (isPlaying) audio.play();
       if (shouldLoop) audio.loop();
     };
@@ -17,7 +18,7 @@ const useBackgroundAudio = ({ url, autoPlay = false, shouldLoop = false }) => {
       audio.pause();
       audio.currentTime = 0;
     };
-  }, [isPlaying]);
+  }, [isPlaying, audio, shouldLoop]);
 
   return { isPlaying, setIsPlaying };
 };
