@@ -2,25 +2,29 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
 
-import randomBetween from "../../utlis/randomBetween";
 import useBackgroundAudio from "../../hooks/useBackgroundAudio";
 import useStore from "../../store";
 import {
   selectResetGame,
   selectToggleHideMatches,
   selectHideMatches,
+  selectPlaySound,
 } from "../../store/selectors";
+import { sounds } from "../../constants";
 
 const Toolbar = () => {
   const resetGame = useStore(selectResetGame);
   const toggleHideMatches = useStore(selectToggleHideMatches);
   const hideMatches = useStore(selectHideMatches);
-
+  const playSound = useStore(selectPlaySound);
   const history = useHistory();
+  const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: "audio/background.mp3" });
 
-  const handleGoToSelectDeck = () => history.push("/");
-
-  const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: `audio/background-${randomBetween(1, 3)}.mp3` });
+  const handleGoToSelectDeck = () => {
+    playSound(sounds.buttonSelect);
+    resetGame();
+    history.push("/");
+  };
 
   const toggleSound = () => setIsPlaying(!isPlaying);
 
