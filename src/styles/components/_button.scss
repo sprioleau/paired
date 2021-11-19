@@ -1,0 +1,53 @@
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+
+
+}
+
+button,
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  border: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 10px -5px rgba($purple, 0.3);
+  letter-spacing: 0.5px;
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 1.5rem;
+  transform: scale(1);
+  transition: all 250ms ease-out;
+  background-color: $purple;
+  font-family: Mali, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+
+  span {
+    display: flex;
+    align-items: center;
+
+    & svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.35rem rgba($purple, 0.8);
+  }
+}
