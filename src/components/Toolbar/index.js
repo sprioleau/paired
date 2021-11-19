@@ -1,6 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
+import { MdVolumeOff, MdVolumeUp, MdPhotoSizeSelectActual } from "react-icons/md";
+import { BiReset } from "react-icons/bi";
+// import { GrPowerReset } from "react-icons/gr";
 
 import useBackgroundAudio from "../../hooks/useBackgroundAudio";
 import useStore from "../../store";
@@ -30,12 +32,26 @@ const Toolbar = () => {
 
   return (
     <div className="toolbar">
-      {/* <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button> */}
-      <button type="button" onClick={resetGame}>Reset Game</button>
-      <button type="button" onClick={handleGoToSelectDeck}>Select Deck</button>
-      <button type="button" onClick={toggleSound}>
-        {isPlaying ? (<span><MdVolumeOff /> Off</span>) : (<span><MdVolumeUp /> On</span>)}
-      </button>
+      <div className="button-row">
+        {/* <button type="button" onClick={toggleHideMatches}>{hideMatches ? "Show" : "Hide"} matches</button> */}
+        <button type="button" onClick={resetGame}><span className="icon"><BiReset /></span><span>Reset Game</span></button>
+        <button type="button" onClick={handleGoToSelectDeck}><span className="icon"><MdPhotoSizeSelectActual /></span><span>Select Deck</span></button>
+        <button type="button" onClick={toggleSound}>
+          {isPlaying
+            ? (
+              <>
+                <span className="icon"><MdVolumeOff /></span>
+                <span>Off</span>
+              </>
+            )
+            : (
+              <>
+                <span className="icon"><MdVolumeUp /></span>
+                <span>On</span>
+              </>
+            )}
+        </button>
+      </div>
     </div>
   );
 };
