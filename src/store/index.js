@@ -8,10 +8,12 @@ import timeout from "../utlis/timeout";
 let soundId = null;
 const gameSounds = new Audio("/audio/game-sounds.mp3");
 
+const initialtDeck = availableDecks.find(({ id }) => id === "favorite-characters");
+
 const useStore = create((set) => ({
   // State
-  deck: generateDeckFromData(availableDecks[0]),
-  userSelectedDeck: availableDecks[0],
+  deck: generateDeckFromData(initialtDeck),
+  userSelectedDeck: initialtDeck,
   selectedIds: [],
   matches: [],
   hideMatches: false,
