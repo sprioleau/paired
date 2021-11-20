@@ -63,7 +63,7 @@ registerRoute(
     plugins: [
       // Ensure that once this runtime cache reaches a maximum size the
       // least-recently used images are removed.
-      new ExpirationPlugin({ maxEntries: 150 }),
+      new ExpirationPlugin({ maxEntries: 100 }),
     ],
   }),
 );
@@ -75,7 +75,7 @@ registerRoute(
   new StaleWhileRevalidate({
     cacheName: "audio",
     plugins: [
-      new ExpirationPlugin({ maxEntries: 25 }),
+      new ExpirationPlugin({ maxEntries: 5 }),
     ],
   }),
 );
