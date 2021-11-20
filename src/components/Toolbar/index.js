@@ -20,7 +20,7 @@ const Toolbar = () => {
   // const hideMatches = useStore(selectHideMatches);
   const playSound = useStore(selectPlaySound);
   const history = useHistory();
-  const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: "audio/background.mp3" });
+  const { isPlaying, setIsPlaying } = useBackgroundAudio({ url: "audio/background-trim.mp3" });
 
   const handleGoToSelectDeck = () => {
     playSound(sounds.buttonSelect);
