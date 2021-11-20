@@ -1,12 +1,7 @@
 mkdir public/images/webp
 
 for FILE in public/images/**/*; do 
-# echo "$(filename=${FILE##*/}; echo ${filename%.*})"
-  # if [[ $FILE == *.webp ]]
-  # then
-  #   rm $FILE
   if [[ $FILE == *.gif ]]
-  # elif [[ $FILE == *.gif ]]
   then
     echo converting ${FILE%.*} to .webp
     gif2webp -q 75 ${FILE%.*}.gif -o public/images/webp/$(filename=${FILE##*/}; echo ${filename%.*}).webp -quiet
