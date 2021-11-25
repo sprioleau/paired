@@ -14,7 +14,7 @@ const sounds = {
   },
   win: {
     startTime: 3,
-    duration: 2.2,
+    duration: 2,
   },
   buttonSelect: {
     startTime: 5,

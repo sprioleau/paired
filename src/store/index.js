@@ -19,6 +19,7 @@ const useStore = create((set) => ({
   hideMatches: false,
   score: 0,
   gameSounds,
+  // currentPlayer: null,
 
   // State functions
   generateShuffledDeck: () => set((state) => ({ deck: generateDeckFromData(state.userSelectedDeck) })),
@@ -62,13 +63,14 @@ const useStore = create((set) => ({
     return set((state) => {
       const [name1, name2] = idsToCompare.map((id) => state.deck.cards[id].name);
       const isMatch = name1 === name2;
+      const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name1].includes(card.name));
 
       if (isMatch) {
-        state.updateMatches(name1);
+        state.updateMatches(name1, allMatchesFound);
         state.addToScoreBy(10);
       }
 
-      state.deselectCards(1000, isMatch);
+      if (!allMatchesFound) state.deselectCards(1000, isMatch);
       return { state };
     });
   },
@@ -77,18 +79,12 @@ const useStore = create((set) => ({
     await timeout(after);
 
     set((state) => {
-      if (isMatch) {
-        state.playSound(sounds.correct);
-      } else {
-        state.playSound(sounds.incorrect);
-      }
-
+      state.playSound(isMatch ? sounds.correct : sounds.incorrect);
       return { selectedIds: [] };
     });
   },
 
-  updateMatches: (name) => set((state) => {
-    const allMatchesFound = Object.values(state.deck.cards).length > 0 && Object.values(state.deck.cards).every((card) => [...state.matches, name].includes(card.name));
+  updateMatches: (name, allMatchesFound) => set((state) => {
     if (allMatchesFound) state.playSound(sounds.win);
 
     return {
