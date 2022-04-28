@@ -16,6 +16,5 @@ export default {
     { filename: "paw-patrol-7.gif" , name: "paw-patrol-7" , backgroundColor: "#46f0f0" },
     { filename: "paw-patrol-8.gif" , name: "paw-patrol-8" , backgroundColor: "#f032e6" },
     { filename: "paw-patrol-9.gif" , name: "paw-patrol-9" , backgroundColor: "#bcf60c" },
-    { filename: "paw-patrol-10.gif", name: "paw-patrol-10", backgroundColor: "#fabebe" },
   ],
 };
