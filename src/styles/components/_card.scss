@@ -47,6 +47,8 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     background-color: white;
+    background-image: url("/card-back.png");
+    background-size: cover;
   }
 }
 
