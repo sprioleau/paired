@@ -54,7 +54,7 @@
     transform: scale(var(--scale));
     transition: transform 0.25s ease-out;
 
-    &:hover {
+    &:hover, &:focus {
       --scale: 1.05;
       cursor: pointer;
     }

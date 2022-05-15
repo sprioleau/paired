@@ -25,13 +25,15 @@ const DeckCover = ({
   };
 
   return (
-    <li key={id} className="deck-select__deck" onClick={() => handleSelectDeck(id)}>
+    <li key={id} className="deck-select__deck">
       <h3 className="deck-select__title">{title}</h3>
       <div className="deck-select__cover-image-wrapper">
-        <div
+        <button
           className="deck-select__cover-image"
           alt={selectedCard.name}
           data-name={selectedCard.name}
+          type="button"
+          onClick={() => handleSelectDeck(id)}
           style={{
             backgroundImage: `url(images/${id}/${selectedCard.filename})`,
             backgroundSize: "cover",
@@ -57,7 +59,7 @@ const DeckCover = ({
               pointerEvents: "none",
             }}
           />
-        </div>
+        </button>
       </div>
     </li>
   );

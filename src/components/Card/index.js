@@ -28,7 +28,7 @@ const Card = ({
   const onClick = useCallback(() => handleSelectCard(id), [id, handleSelectCard]);
 
   return (
-    <li className={styles.card} onClick={onClick}>
+    <button className={styles.card} onClick={onClick} type="button">
       <div className="card__front" style={{ backgroundColor }}>
         <div
           className="card__image"
@@ -38,7 +38,7 @@ const Card = ({
         />
       </div>
       <div className="card__back" />
-    </li>
+    </button>
   );
 };
 
