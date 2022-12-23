@@ -1,5 +1,6 @@
 // import birds from "./birds";
 import pokemon from "./pokemon";
+import sonic from "./sonic";
 import favoriteCharacters from "./favorite-characters";
 import emojis from "./emojis";
 import pawPatrol from "./paw-patrol";
@@ -9,8 +10,9 @@ import numbersZeroTen from "./numbers-zero-ten";
 
 const availableDecks = [
   // birds,
-  pokemon,
   favoriteCharacters,
+  pokemon,
+  sonic,
   emojis,
   pawPatrol,
   fruits,
