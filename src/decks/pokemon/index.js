@@ -4,7 +4,7 @@
 
 export default {
   id: "pokemon",
-  title: "Pokémon",
+  title: "Zoe's Favorite Pokémon",
   coverIndex: 2,
   cards: [
     { filename: "pikachu-run.gif"    , name: "pikachu-run"    , backgroundColor: "#f032e6" },
